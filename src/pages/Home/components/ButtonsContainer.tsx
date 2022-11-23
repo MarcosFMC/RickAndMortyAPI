@@ -43,6 +43,8 @@ export const ButtonsContainerStyle = styled.div`
       transform: translateX(0px);
     }
   }
+  @media screen and (max-width: 800px) {
+  }
 `;
 
 export default ButtonsContainer;

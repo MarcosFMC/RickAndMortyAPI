@@ -13,15 +13,12 @@ const Nav: React.FC<NavInterface> = () => {
         name={<HiArrowLeft className="arrow-left"></HiArrowLeft>}
         link="/"
       ></Button>
-
-      <p className="nav-title">
-        PERSONAJES
-        <img
-          className="rick-icon"
-          src="https://icon-library.com/images/rick-sanchez-icon/rick-sanchez-icon-28.jpg"
-          alt=""
-        />
-      </p>
+      <img
+        className="rick-icon"
+        src="https://icon-library.com/images/rick-sanchez-icon/rick-sanchez-icon-28.jpg"
+        alt=""
+      />
+      <p className="nav-title">CHARACTERS</p>
     </NavStyle>
   );
 };
@@ -34,7 +31,7 @@ export const NavStyle = styled.nav`
   z-index: 999;
   top: 0;
   width: 100vw;
-  background: rgb(249, 249, 249, 5%);
+  background: #161625;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
 
   .nav-title {
@@ -46,7 +43,14 @@ export const NavStyle = styled.nav`
   }
 
   .rick-icon {
-    height: 1rem;
+    height: auto;
+    width: 2rem;
+  }
+
+  @media screen and (max-width: 1200px) {
+    .rick-icon {
+      display: none;
+    }
   }
 `;
 

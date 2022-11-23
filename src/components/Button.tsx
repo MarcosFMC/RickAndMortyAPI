@@ -29,32 +29,30 @@ const Button: React.FC<ButtonInterface> = (props) => {
 };
 
 export const ButtonStyle = styled.button`
-  font-family:'Kanit';
-  height:3rem;
-  text-align:center;
+  font-family: "Kanit";
+  height: 3rem;
+  text-align: center;
   background-color: transparent;
   border-radius: 3px;
   border: none;
   font-size: 25px;
-  font-weight:400;
+  font-weight: 400;
   cursor: pointer;
-  transition:0.1s all;
- 
+  transition: 0.1s all;
 
-  a{
-    text-decoration:none;
+  a {
+    text-decoration: none;
   }
-  a:hover{
+  a:hover {
     color: grey;
   }
-  
+
   &:hover {
     color: grey;
   }
-
   @media screen and (max-width: 800px) {
-    font-size 10px;
-    }
+    font-size: 20px;
+  }
 `;
 
 export default Button;

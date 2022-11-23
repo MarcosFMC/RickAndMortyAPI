@@ -14,18 +14,17 @@ const PaginationButton: React.FC<PaginationButtonInterface> = (props) => {
 };
 
 export const PaginationButtonStyle = styled.button`
-  background: radial-gradient(
-    circle at 10% 20%,
-    rgb(90, 92, 106) 0%,
-    rgb(32, 45, 58) 81.3%
-  );
-  border: none;
+  background: rgb(249, 249, 249, 5%);
+  padding: 0.5rem 2rem;
+  border: thin solid rgb(32, 45, 58);
+  border-radius: 0.5rem;
   transition: 0.1s all;
   cursor: pointer;
   font-family: "Kanit";
 
   &:hover {
-    color: grey;
+    background: rgb(0, 0, 0, 50%);
+    border: thin solid rgb(249, 249, 249, 30%);
   }
 `;
 

@@ -1,16 +1,21 @@
+export interface nameData {
+  name: string;
+  url: string;
+}
+
 export interface APICharacter {
-  id: number;
+  id?: number;
   name: string;
   status: string;
   species: string;
   type: string;
   gender: string;
-  origin: object;
-  location: object;
+  origin: nameData;
+  location: nameData;
   image: string;
   episode: string[];
-  url: string;
-  created: string;
+  url?: string;
+  created?: string;
 }
 
 export interface APIInfo {
@@ -20,9 +25,19 @@ export interface APIInfo {
   prev: string;
 }
 
+export interface APIAllData {
+  results: APICharacter[];
+  info: APIInfo;
+}
+
 export const APIInfoInitialState: APIInfo = {
   count: 0,
   pages: 0,
   next: "",
   prev: "",
+};
+
+export const APIAllDataInitialState = {
+  results: [],
+  info: APIInfoInitialState,
 };

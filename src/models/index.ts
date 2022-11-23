@@ -1,2 +1,2 @@
 export * from "./appStore";
-export * from "./character";
+export * from "./rick-and-morty";

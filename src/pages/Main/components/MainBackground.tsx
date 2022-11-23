@@ -45,11 +45,11 @@ export const MainBackgroundStyle = styled.div`
   }
 
   .area {
-    background: radial-gradient(
-      circle at 10% 20%,
-      rgb(90, 92, 106) 0%,
-      rgb(32, 45, 58) 81.3%
-    );
+      background: radial-gradient(
+        circle at 10% 20%,
+        rgb(90, 92, 106) 0%,
+        rgb(32, 45, 58) 81.3%
+      );
 
     width: 100%;
     height: 100vh;
