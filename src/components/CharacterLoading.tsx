@@ -7,12 +7,17 @@ const CharacterLoading: React.FC<CharacterLoadingInterface> = () => {
 };
 
 export const CharacterLoadingStyle = styled.div`
-  width: 240px;
+  width: 1fr;
   height: 290px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #303040;
+
+  @media screen and (max-width: 600px) {
+    width: 200px;
+    height: 250px;
+  }
 
   animation: characterLoadingAnim 2s ease 0s infinite normal forwards;
 
