@@ -124,12 +124,17 @@ Error generating stack: `+i.message+`
     font-size: 20px;
   }
 `,uh=()=>x(Oy,{}),Oy=de.div`
-  width: 240px;
+  width: 1fr;
   height: 290px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #303040;
+
+  @media screen and (max-width: 600px) {
+    width: 200px;
+    height: 250px;
+  }
 
   animation: characterLoadingAnim 2s ease 0s infinite normal forwards;
 
@@ -797,4 +802,4 @@ Error generating stack: `+i.message+`
     background: rgb(249, 249, 249, 5%);
     padding: 0px 1rem;
   }
-`;const pw=j.exports.lazy(()=>ms(()=>import("./Home.60e4c82c.js"),[])),hw=j.exports.lazy(()=>ms(()=>Promise.resolve().then(()=>uw),void 0)),mw=()=>x("div",{children:x(Ug,{children:x(j.exports.Suspense,{fallback:x(Iy,{}),children:ee(Fg,{children:[x(bo,{path:"/RickAndMortyAPI",element:x(pw,{})}),x(bo,{path:"/main",element:x(hw,{})}),x(bo,{path:"*",element:x(zy,{})})]})})})});iu.createRoot(document.getElementById("root")).render(x(Mv,{store:tw,children:x(Tt.StrictMode,{children:x(mw,{})})}));export{vw as B,no as F,gw as G,yw as I,x as a,ee as j};
+`;const pw=j.exports.lazy(()=>ms(()=>import("./Home.7ac1ce25.js"),[])),hw=j.exports.lazy(()=>ms(()=>Promise.resolve().then(()=>uw),void 0)),mw=()=>x("div",{children:x(Ug,{children:x(j.exports.Suspense,{fallback:x(Iy,{}),children:ee(Fg,{children:[x(bo,{path:"/RickAndMortyAPI",element:x(pw,{})}),x(bo,{path:"/main",element:x(hw,{})}),x(bo,{path:"*",element:x(zy,{})})]})})})});iu.createRoot(document.getElementById("root")).render(x(Mv,{store:tw,children:x(Tt.StrictMode,{children:x(mw,{})})}));export{vw as B,no as F,gw as G,yw as I,x as a,ee as j};
