@@ -1,6 +1,5 @@
 import { APICharacter, APIAllData } from "./rick-and-morty";
 
 export interface AppStore {
-  characters: APICharacter[];
-  filterCharacters: APIAllData;
+  characters: APIAllData;
 }

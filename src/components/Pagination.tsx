@@ -1,8 +1,8 @@
-import { PaginationContext } from "@/contexts";
+import { CharacterListContext, PaginationContext } from "@/contexts";
 import { AppStore } from "@/models";
 import { getAllCharacters, GetFetch } from "@/pages";
-import { getAll, getCharacters } from "@/redux";
-import React, { useEffect, useContext } from "react";
+import { getAll } from "@/redux";
+import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import PaginationButton from "./PaginationButton";
@@ -14,8 +14,10 @@ const Pagination: React.FC<PaginationInterface> = () => {
 
   const { setPaginationCount, currentPage } = useContext(PaginationContext);
 
+  const { setLoading } = useContext(CharacterListContext);
+
   const paginationInfo = useSelector(
-    (state: AppStore) => state.filterCharacters.info
+    (state: AppStore) => state.characters.info
   );
 
   const getCurrentPageFromURL = (url: string) => {
@@ -24,69 +26,73 @@ const Pagination: React.FC<PaginationInterface> = () => {
   };
   const setChars = async () => {
     const data = await GetFetch(getAllCharacters);
-    dispatch(getCharacters(data.results));
     dispatch(getAll(data));
   };
 
   useEffect(() => {
+    setLoading(true);
     setChars();
+    setLoading(false);
   }, []);
 
   const handleNext = async () => {
     if (paginationInfo !== undefined) {
+      setLoading(true);
       const data = await GetFetch(paginationInfo.next);
       getCurrentPageFromURL(paginationInfo.next);
-      dispatch(getCharacters(data.results));
       dispatch(getAll(data));
+      setLoading(false);
     }
   };
 
   const handlePrevious = async () => {
     if (paginationInfo !== undefined) {
+      setLoading(true);
       const data = await GetFetch(paginationInfo.prev);
       getCurrentPageFromURL(paginationInfo.prev);
-      dispatch(getCharacters(data.results));
       dispatch(getAll(data));
+      setLoading(false);
     }
   };
   return (
     <PaginationStyle>
       {paginationInfo !== undefined ? (
         <>
-          {currentPage !== "1" ? (
-            <PaginationButton
-              type={false}
-              onClick={handlePrevious}
-            ></PaginationButton>
-          ) : undefined}
-          <span>
-            {currentPage} de {paginationInfo.pages}
+          <PaginationButton
+            type={false}
+            onClick={handlePrevious}
+          ></PaginationButton>
+
+          <span className="pages-text">
+            <b>{currentPage}</b> de {paginationInfo.pages}
           </span>
-          {paginationInfo.pages === 1 ? undefined : (
-            <PaginationButton
-              type={true}
-              onClick={handleNext}
-            ></PaginationButton>
-          )}
-          <span className="characters-found-text">
-            Personajes encontrados : {paginationInfo.count}
-          </span>
+
+          <PaginationButton type={true} onClick={handleNext}></PaginationButton>
         </>
       ) : undefined}
+      <span className="characters-found-text">
+        Personajes encontrados :
+        {paginationInfo !== undefined ? paginationInfo.count : null}
+      </span>
     </PaginationStyle>
   );
 };
 
 export const PaginationStyle = styled.div`
-  margin: 2rem 2rem;
-  span {
+  margin: 1rem;
+
+  .characters-found-text {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  .pages-text {
     margin: 1rem;
   }
-  @media screen and (max-width: 600px) {
-    .characters-found-text {
-      display: block;
-      text-align: center;
-    }
+
+  .pages-text b {
+    background: rgb(249, 249, 249, 5%);
+    padding: 0px 1rem;
   }
 `;
 

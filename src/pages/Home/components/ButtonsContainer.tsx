@@ -30,20 +30,20 @@ export const ButtonsContainerStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  transform: translateX(-400px);
   width: 70%;
 
-  animation-name: startAnimation;
-  animation-delay: 0.5s;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
+  animation: start 1s ease-out 0s 1 normal forwards;
 
-  @keyframes startAnimation {
-    100% {
-      transform: translateX(0px);
+  @keyframes start {
+    0% {
+      opacity: 0;
+      transform: translateX(-250px);
     }
-  }
-  @media screen and (max-width: 800px) {
+
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 `;
 

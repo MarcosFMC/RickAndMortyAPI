@@ -1,5 +1,5 @@
 import { Nav, Pagination } from "@/components";
-import { PaginationProvider } from "@/contexts";
+import { CharacterListProvider, PaginationProvider } from "@/contexts";
 import React from "react";
 import styled from "styled-components";
 import { CharacterList, MainBackground, SearchInput } from "./components";
@@ -14,8 +14,12 @@ const Main: React.FC<MainInterface> = () => {
           <Nav></Nav>
           <MainBackground />
           <SearchInput />
-          <CharacterList />
-          <Pagination />
+          <CharacterListProvider>
+            <>
+              <CharacterList />
+              <Pagination />
+            </>
+          </CharacterListProvider>
         </>
       </PaginationProvider>
     </MainStyle>

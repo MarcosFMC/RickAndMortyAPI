@@ -1,4 +1,4 @@
-import { Modal } from "@/components";
+import { CharacterLoading, Loading, Modal } from "@/components";
 import { APICharacter } from "@/models";
 import React, { useState } from "react";
 import styled from "styled-components";
@@ -8,32 +8,42 @@ const Character: React.FC<APICharacter> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <CharacterStyle onClick={() => setIsOpen(!isOpen)}>
-      <button className="description-btn">CLICK FOR MORE INFO...</button>
-      <img src={props.image} alt="" />
-      <div className="description">
-        <b className={props.status === "Alive" ? "title alive" : "title dead"}>
-          {props.name || "Unknown"}
-        </b>
-        <span className="gender">
-          {props.gender || "Unknown"} / {props.species || "Unknown"}
-        </span>
-        <br />
-        {isOpen ? (
-          <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-            <ModalCharacterDescription
-              image={props.image}
-              status={props.status}
-              name={props.name}
-              gender={props.gender}
-              species={props.species}
-              episode={props.episode}
-              type={props.type}
-              location={props.location}
-              origin={props.origin}
-            ></ModalCharacterDescription>
-          </Modal>
-        ) : undefined}
-      </div>
+      {props.loading ? (
+        <CharacterLoading></CharacterLoading>
+      ) : (
+        <>
+          <button className="description-btn">CLICK FOR MORE INFO...</button>
+          <img src={props.image} alt="" />
+          <div className="description">
+            <b
+              className={
+                props.status === "Alive" ? "title alive" : "title dead"
+              }
+            >
+              {props.name || "Unknown"}
+            </b>
+            <span className="gender">
+              {props.gender || "Unknown"} / {props.species || "Unknown"}
+            </span>
+            <br />
+            {isOpen ? (
+              <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+                <ModalCharacterDescription
+                  image={props.image}
+                  status={props.status}
+                  name={props.name}
+                  gender={props.gender}
+                  species={props.species}
+                  episode={props.episode}
+                  type={props.type}
+                  location={props.location}
+                  origin={props.origin}
+                ></ModalCharacterDescription>
+              </Modal>
+            ) : undefined}
+          </div>
+        </>
+      )}
     </CharacterStyle>
   );
 };
@@ -48,7 +58,6 @@ export const CharacterStyle = styled.div`
   &:hover {
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
     background-color: rgb(249, 249, 249, 30%);
-    padding: 1rem;
     border: thin solid rgb(249, 249, 249, 1%);
     .description-btn {
       background: rgb(0, 0, 0, 50%);

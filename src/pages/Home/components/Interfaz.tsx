@@ -7,7 +7,7 @@ export interface InterfazInterface {}
 const Interfaz: React.FC<InterfazInterface> = () => {
   return (
     <InterfazStyle>
-      <HomeTitle></HomeTitle>
+      <HomeTitle text="The Rick and Morty API"></HomeTitle>
       <ButtonsContainer></ButtonsContainer>
       <p className="text">
         <h2 className="text-title">What is this?</h2>

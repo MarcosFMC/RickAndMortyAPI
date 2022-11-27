@@ -11,7 +11,7 @@ const Nav: React.FC<NavInterface> = () => {
       <Button
         isNavLink={true}
         name={<HiArrowLeft className="arrow-left"></HiArrowLeft>}
-        link="/"
+        link="/RickAndMortyAPI"
       ></Button>
       <img
         className="rick-icon"

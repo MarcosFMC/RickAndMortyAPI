@@ -1,8 +1,9 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Nav } from "./components";
+import { ErrorPage, Loading } from "./components";
 import "./index.css";
-import { Home, Main } from "./pages";
+const Home = lazy(() => import("./pages/Home/Home"));
+const Main = lazy(() => import("./pages/Main/Main"));
 
 export interface AppInterface {}
 
@@ -10,10 +11,13 @@ const App: React.FC<AppInterface> = () => {
   return (
     <div>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/main" element={<Main />}></Route>
-        </Routes>
+        <Suspense fallback={<Loading></Loading>}>
+          <Routes>
+            <Route path="/RickAndMortyAPI" element={<Home />}></Route>
+            <Route path="/main" element={<Main />}></Route>
+            <Route path="*" element={<ErrorPage></ErrorPage>}></Route>
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </div>
   );

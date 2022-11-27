@@ -87,6 +87,10 @@ export const ModalCharacterDescriptionStyle = styled.div`
     color: #5ba4fb;
     font-size: 2em;
   }
+
+  @media screen and (max-width: 1000px) {
+    width: 400px;
+  }
 `;
 
 export default ModalCharacterDescription;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Background, Gradient, Interfaz } from "./components";
+import { Background, ButtonsContainer, Gradient, Interfaz } from "./components";
 
 export interface HomeInterface {}
 

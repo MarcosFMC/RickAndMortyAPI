@@ -16,6 +16,7 @@ export interface APICharacter {
   episode: string[];
   url?: string;
   created?: string;
+  loading?: any;
 }
 
 export interface APIInfo {

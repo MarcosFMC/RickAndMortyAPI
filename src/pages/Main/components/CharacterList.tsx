@@ -1,33 +1,36 @@
-import React from "react";
+import { CharacterLoading, ErrorNotFound } from "@/components";
+import { CharacterListContext } from "@/contexts";
+import { AppStore } from "@/models";
+import React, { lazy, Suspense, useContext } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import Character from "./Character";
-import { AppStore } from "@/models";
-import { ErrorNotFound } from "@/components";
+const Character = lazy(() => import("./Character"));
 
 export interface CharacterListInterface {}
 
 const CharacterList: React.FC<CharacterListInterface> = () => {
-  const characters = useSelector(
-    (state: AppStore) => state.filterCharacters.results
-  );
+  const characters = useSelector((state: AppStore) => state.characters.results);
+  const { loading, setLoading } = useContext(CharacterListContext);
   return (
     <CharacterListStyle>
       {characters === undefined ? (
         <ErrorNotFound></ErrorNotFound>
       ) : (
         characters.map((data) => (
-          <Character
-            image={data.image}
-            status={data.status}
-            name={data.name}
-            gender={data.gender}
-            species={data.species}
-            episode={data.episode}
-            type={data.type}
-            location={data.location}
-            origin={data.origin}
-          ></Character>
+          <Suspense fallback={<CharacterLoading></CharacterLoading>}>
+            <Character
+              loading={loading}
+              image={data.image}
+              status={data.status}
+              name={data.name}
+              gender={data.gender}
+              species={data.species}
+              episode={data.episode}
+              type={data.type}
+              location={data.location}
+              origin={data.origin}
+            ></Character>
+          </Suspense>
         ))
       )}
     </CharacterListStyle>
