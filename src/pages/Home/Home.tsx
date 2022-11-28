@@ -1,15 +1,14 @@
 import React from "react";
-import { Background, ButtonsContainer, Gradient, Interfaz } from "./components";
+import { BackgroundVideo, UIHome } from "./components";
 
 export interface HomeInterface {}
 
 const Home: React.FC<HomeInterface> = () => {
   return (
-    <>
-      <Background />
-      <Gradient></Gradient>
-      <Interfaz></Interfaz>
-    </>
+    <div>
+      <BackgroundVideo />
+      <UIHome />
+    </div>
   );
 };
 

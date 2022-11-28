@@ -1,27 +1,18 @@
-import React from "react";
 import styled from "styled-components";
-export interface HomeTitleInterface {
-  text: string;
-  className?: string;
-}
 
-const HomeTitle: React.FC<HomeTitleInterface> = ({ text, className }) => {
-  return <HomeTitleStyle className={className}>{text}</HomeTitleStyle>;
-};
+export const SCHomeTitle = styled.h2`
 
-export const HomeTitleStyle = styled.h2`
- 
+  font-size: 100px;  
+  animation: homeTitleAnim 1s ease-out 0s 1 normal forwards;
 
-  font-size: 100px;
-  font-weight:500;
-  animation-name:startAnimation;
-  animation-duration:1s;
-  animation-fill-mode: forwards;
-  transform:translateY(-400px);
+  @media screen and (max-width: 1200px) {
+    font-size 70px;
+  }
+  @media screen and (max-width: 800px) {
+	font-size 40px;
+  }
   
-  animation: myAnim 1s ease-out 0s 1 normal forwards;
-
-  @keyframes myAnim {
+  @keyframes homeTitleAnim {
     0% {
       animation-timing-function: ease-in;
       opacity: 0;
@@ -65,13 +56,6 @@ export const HomeTitleStyle = styled.h2`
     }
   }
 
-  @media screen and (max-width: 1200px) {
-    font-size 70px;
-  }
-  @media screen and (max-width: 800px) {
-	font-size 40px;
-  }
+
 
 `;
-
-export default HomeTitle;

@@ -1,35 +1,41 @@
 import { Nav, Pagination } from "@/components";
 import { CharacterListProvider, PaginationProvider } from "@/contexts";
-import React from "react";
+import { getCharacters } from "@/redux";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { CharacterList, MainBackground, SearchInput } from "./components";
+import { CharacterList, MainBackground, SearchCharacter } from "./components";
+import { getAllCharacters, GetFetch } from "./services";
+import { useDispatch } from "react-redux";
+import { SCMain } from "./styled-components/SCMain";
 
 export interface MainInterface {}
 
 const Main: React.FC<MainInterface> = () => {
+  const dispatch = useDispatch();
+
+  const setCharacters = async () => {
+    const data = await GetFetch(getAllCharacters);
+    dispatch(getCharacters(data));
+  };
+  useEffect(() => {
+    setCharacters();
+  }, []);
+
   return (
-    <MainStyle>
+    <SCMain>
       <PaginationProvider>
-        <>
-          <Nav></Nav>
-          <MainBackground />
-          <SearchInput />
-          <CharacterListProvider>
-            <>
-              <CharacterList />
-              <Pagination />
-            </>
-          </CharacterListProvider>
-        </>
+        <CharacterListProvider>
+          <>
+            <Nav />
+            <MainBackground />
+            <SearchCharacter />
+            <CharacterList />
+            <Pagination />
+          </>
+        </CharacterListProvider>
       </PaginationProvider>
-    </MainStyle>
+    </SCMain>
   );
 };
-
-const MainStyle = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 
 export default Main;

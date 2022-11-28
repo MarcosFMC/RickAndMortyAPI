@@ -1,1 +1,12 @@
 export { default as ModalHighlightText } from "./ModalHighlightText";
+export * from "./SCButton";
+export * from "./SCButtonPagination";
+export * from "./SCErrorCharacterNotFound";
+export * from "./SCErrorRoutesPage";
+export * from "./SCH2";
+export * from "./SCHomeTitle";
+export * from "./SCLoadingCharacter";
+export * from "./SCLoadingWindow";
+export * from "./SCModal";
+export * from "./SCNav";
+export * from "./SCPagination";

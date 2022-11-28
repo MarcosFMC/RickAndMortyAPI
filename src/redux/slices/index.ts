@@ -1,1 +1,1 @@
-export * from "./filterCharacters.slice";
+export * from "./characters.slice";

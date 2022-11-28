@@ -1,29 +1,13 @@
-import React from "react";
 import styled from "styled-components";
-export interface LoadingInterface {}
 
-const Loading: React.FC<LoadingInterface> = () => {
-  return (
-    <LoadingStyle>
-      <section>
-        <div className="loader loader-1">
-          <div className="loader-outter"></div>
-          <div className="loader-inner"></div>
-        </div>
-      </section>
-    </LoadingStyle>
-  );
-};
+export const SCLoadingWindow = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #303040;
 
-export const LoadingStyle = styled.div`
-  section {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #303040;
-  }
   .loader {
     position: relative;
     width: 100px;
@@ -60,5 +44,3 @@ export const LoadingStyle = styled.div`
     animation: loader-1-inner 1s cubic-bezier(0.42, 0.61, 0.58, 0.41) infinite;
   }
 `;
-
-export default Loading;

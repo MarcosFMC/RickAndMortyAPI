@@ -1,5 +1,5 @@
-import { APICharacter, APIAllData } from "./rick-and-morty";
+import { APIData } from "./rick-and-morty";
 
 export interface AppStore {
-  characters: APIAllData;
+  characters: APIData;
 }

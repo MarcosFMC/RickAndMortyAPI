@@ -1,5 +1,6 @@
 import { ReactJSXElement } from "@emotion/react/types/jsx-namespace";
 import { createContext, useState } from "react";
+
 interface ICharacterListContext {
   loading: boolean;
   setLoading: any;

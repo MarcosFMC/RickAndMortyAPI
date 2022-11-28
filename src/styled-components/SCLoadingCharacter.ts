@@ -1,12 +1,6 @@
-import React from "react";
 import styled from "styled-components";
-export interface CharacterLoadingInterface {}
 
-const CharacterLoading: React.FC<CharacterLoadingInterface> = () => {
-  return <CharacterLoadingStyle></CharacterLoadingStyle>;
-};
-
-export const CharacterLoadingStyle = styled.div`
+export const SCLoadingCharacter = styled.div`
   width: 1fr;
   height: 290px;
   display: flex;
@@ -49,5 +43,3 @@ export const CharacterLoadingStyle = styled.div`
     }
   }
 `;
-
-export default CharacterLoading;

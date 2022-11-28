@@ -1,11 +1,11 @@
 import { CharacterListContext, PaginationContext } from "@/contexts";
 import { AppStore } from "@/models";
-import { getAllCharacters, GetFetch } from "@/pages";
-import { getAll } from "@/redux";
-import React, { useContext, useEffect } from "react";
+import { GetFetch } from "@/pages";
+import { getCharacters } from "@/redux";
+import { SCPagination } from "@/styled-components";
+import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
-import PaginationButton from "./PaginationButton";
+import ButtonPagination from "./ButtonPagination";
 
 export interface PaginationInterface {}
 
@@ -20,27 +20,17 @@ const Pagination: React.FC<PaginationInterface> = () => {
     (state: AppStore) => state.characters.info
   );
 
-  const getCurrentPageFromURL = (url: string) => {
+  const getNumbersFromURL = (url: string) => {
     const matches: any = url.match(/(\d+)/);
     setPaginationCount(matches[0]);
   };
-  const setChars = async () => {
-    const data = await GetFetch(getAllCharacters);
-    dispatch(getAll(data));
-  };
-
-  useEffect(() => {
-    setLoading(true);
-    setChars();
-    setLoading(false);
-  }, []);
 
   const handleNext = async () => {
     if (paginationInfo !== undefined) {
       setLoading(true);
       const data = await GetFetch(paginationInfo.next);
-      getCurrentPageFromURL(paginationInfo.next);
-      dispatch(getAll(data));
+      getNumbersFromURL(paginationInfo.next);
+      dispatch(getCharacters(data));
       setLoading(false);
     }
   };
@@ -49,51 +39,31 @@ const Pagination: React.FC<PaginationInterface> = () => {
     if (paginationInfo !== undefined) {
       setLoading(true);
       const data = await GetFetch(paginationInfo.prev);
-      getCurrentPageFromURL(paginationInfo.prev);
-      dispatch(getAll(data));
+      getNumbersFromURL(paginationInfo.prev);
+      dispatch(getCharacters(data));
       setLoading(false);
     }
   };
+
   return (
-    <PaginationStyle>
+    <SCPagination>
       {paginationInfo !== undefined ? (
         <>
-          <PaginationButton
-            type={false}
-            onClick={handlePrevious}
-          ></PaginationButton>
+          <ButtonPagination type={false} onClick={handlePrevious} />
 
           <span className="pages-text">
             <b>{currentPage}</b> de {paginationInfo.pages}
           </span>
 
-          <PaginationButton type={true} onClick={handleNext}></PaginationButton>
+          <ButtonPagination type={true} onClick={handleNext} />
         </>
       ) : undefined}
       <span className="characters-found-text">
         Personajes encontrados :
         {paginationInfo !== undefined ? paginationInfo.count : null}
       </span>
-    </PaginationStyle>
+    </SCPagination>
   );
 };
-
-export const PaginationStyle = styled.div`
-  margin: 1rem;
-
-  .characters-found-text {
-    display: block;
-    text-align: center;
-    margin-top: 1rem;
-  }
-  .pages-text {
-    margin: 1rem;
-  }
-
-  .pages-text b {
-    background: rgb(249, 249, 249, 5%);
-    padding: 0px 1rem;
-  }
-`;
 
 export default Pagination;

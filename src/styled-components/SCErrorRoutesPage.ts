@@ -1,45 +1,24 @@
-import React from "react";
 import styled from "styled-components";
-import ErrorIMG from "./assets/MainBackground.jpg";
-import HomeTitle from "./HomeTitle";
-export interface ErrorPageInterface {}
 
-const ErrorPage: React.FC<ErrorPageInterface> = () => {
-  return (
-    <ErrorPageStyle>
-      <HomeTitle
-        text="Error 404: Not Found"
-        className="error-page_title"
-      ></HomeTitle>
-      <img
-        className="error-page_morty-img"
-        src="https://vignette.wikia.nocookie.net/rickandmorty/images/3/3e/Toxic_Rick_Fixed_Transparent_by_Mixo.png/revision/latest?cb=20190519162532"
-        alt=""
-      />
-      <img className="error-page_background-img" src={ErrorIMG} alt="" />
-    </ErrorPageStyle>
-  );
-};
-
-export const ErrorPageStyle = styled.div`
+export const SCErrorRoutesPage = styled.div`
   height: 100vh;
   width: 100vw;
   display: flex;
   justify-content: center;
 
-  animation: errorPageAnim 1s ease 0s 1 normal forwards;
+  animation: errorRoutesAnim 1s ease 0s 1 normal forwards;
 
-  .error-page_title {
+  .error-routes_title {
     align-self: center;
   }
-  .error-page_morty-img {
+  .error-routes_morty-img {
     position: absolute;
     z-index: -998;
     width: 500px;
     height: auto;
     filter: brightness(30%);
   }
-  .error-page_background-img {
+  .error-routes_background-img {
     height: 100vh;
     width: 100vw;
     position: absolute;
@@ -49,7 +28,7 @@ export const ErrorPageStyle = styled.div`
     object-fit: cover;
   }
 
-  @keyframes errorPageAnim {
+  @keyframes errorRoutesAnim {
     0% {
       animation-timing-function: ease-in;
       opacity: 0;
@@ -93,5 +72,3 @@ export const ErrorPageStyle = styled.div`
     }
   }
 `;
-
-export default ErrorPage;
