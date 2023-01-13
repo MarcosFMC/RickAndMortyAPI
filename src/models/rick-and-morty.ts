@@ -4,6 +4,11 @@ export interface URLData {
   url: string;
 }
 
+export const URLDataInitialState: URLData = {
+  name: "",
+  url: "",
+};
+
 export interface APICharacter {
   id?: number;
   name: string;
@@ -20,14 +25,30 @@ export interface APICharacter {
   loading?: any;
 }
 
+export const APICharacterInitialState: APICharacter = {
+  id: 0,
+  name: "",
+  status: "",
+  species: "",
+  type: "",
+  gender: "",
+  origin: URLDataInitialState,
+  location: URLDataInitialState,
+  image: "",
+  episode: [],
+  url: "",
+  created: "",
+  loading: null,
+};
+
 //API PAGINATIONINFO
-export interface APIPaginationInfo {
+export interface APIInfo {
   count: number;
   pages: number;
   next: string;
   prev: string;
 }
-export const APIInfoInitialState: APIPaginationInfo = {
+export const APIInfoInitialState: APIInfo = {
   count: 0,
   pages: 0,
   next: "",
@@ -37,10 +58,10 @@ export const APIInfoInitialState: APIPaginationInfo = {
 //API ALL DATA
 export interface APIData {
   results: APICharacter[];
-  info: APIPaginationInfo;
+  info: APIInfo;
 }
 
-export const APIDataInitialState = {
+export const APIDataInitialState: APIData = {
   results: [],
   info: APIInfoInitialState,
 };

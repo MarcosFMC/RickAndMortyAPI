@@ -1,4 +1,8 @@
-import { CharacterListContext, PaginationContext } from "@/contexts";
+import {
+  CharacterListContext,
+  FilterCharacterContext,
+  PaginationContext,
+} from "@/contexts";
 import { AppStore } from "@/models";
 import { GetFetch } from "@/pages";
 import { getCharacters } from "@/redux";
@@ -14,6 +18,7 @@ const Pagination: React.FC<PaginationInterface> = () => {
 
   const { setPaginationCount, currentPage } = useContext(PaginationContext);
 
+  const { filterForm } = useContext(FilterCharacterContext);
   const { setLoading } = useContext(CharacterListContext);
 
   const paginationInfo = useSelector(
@@ -47,21 +52,25 @@ const Pagination: React.FC<PaginationInterface> = () => {
 
   return (
     <SCPagination>
-      {paginationInfo !== undefined ? (
+      {filterForm.created != "bd" ? (
         <>
-          <ButtonPagination type={false} onClick={handlePrevious} />
+          {paginationInfo !== undefined ? (
+            <>
+              <ButtonPagination type={false} onClick={handlePrevious} />
 
-          <span className="pages-text">
-            <b>{currentPage}</b> de {paginationInfo.pages}
+              <span className="pages-text">
+                <b>{currentPage}</b> de {paginationInfo.pages}
+              </span>
+
+              <ButtonPagination type={true} onClick={handleNext} />
+            </>
+          ) : undefined}
+          <span className="characters-found-text">
+            Personajes encontrados :
+            {paginationInfo !== undefined ? paginationInfo.count : null}
           </span>
-
-          <ButtonPagination type={true} onClick={handleNext} />
         </>
       ) : undefined}
-      <span className="characters-found-text">
-        Personajes encontrados :
-        {paginationInfo !== undefined ? paginationInfo.count : null}
-      </span>
     </SCPagination>
   );
 };

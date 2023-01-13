@@ -1,8 +1,8 @@
 import React from "react";
 import { SCMainBackground } from "../styled-components";
-export interface MainBackgroundInterface {}
+export interface IMainBackground {}
 
-const MainBackground: React.FC<MainBackgroundInterface> = () => {
+const MainBackground: React.FC<IMainBackground> = () => {
   return (
     <SCMainBackground>
       <div className="area">

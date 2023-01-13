@@ -1,5 +1,15 @@
-import { PaginationContext, PaginationInitialStatePage } from "@/contexts";
-import { GetCharacterByName } from "@/pages";
+import {
+  FilterCharacterContext,
+  PaginationContext,
+  PaginationInitialStatePage,
+} from "@/contexts";
+import {
+  apiCharactersURL,
+  apiDataAdapter,
+  getApiCharacters,
+  getApiCharactersByName,
+  GetCharacterByName,
+} from "@/pages";
 import { getCharacters } from "@/redux";
 import React, { useContext } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -12,11 +22,30 @@ const SearchCharacter: React.FC<ISearchCharacter> = () => {
   const dispatch = useDispatch();
 
   const { setPaginationCount } = useContext(PaginationContext);
+  const { filterForm } = useContext(FilterCharacterContext);
+
+  const setAPICharacters = async () => {
+    const data = await getApiCharacters(apiCharactersURL);
+    const adaptData = apiDataAdapter(data);
+    dispatch(getCharacters(adaptData));
+  };
 
   const handleChange = async (e: any) => {
-    const filterData = await GetCharacterByName(e.target.value);
-    setPaginationCount(PaginationInitialStatePage);
-    dispatch(getCharacters(filterData));
+    if (filterForm.created != "bd") {
+      const filterData = await GetCharacterByName(e.target.value);
+      console.log(filterData);
+      setPaginationCount(PaginationInitialStatePage);
+      dispatch(getCharacters(filterData));
+    } else {
+      if (e.target.value != "") {
+        const filterData = await getApiCharactersByName(e.target.value);
+        const data = apiDataAdapter(filterData);
+        dispatch(getCharacters(data));
+        console.log(data);
+      } else {
+        setAPICharacters();
+      }
+    }
   };
 
   return (

@@ -1,7 +1,7 @@
-import { ButtonRoutes } from "@/components";
-import { HiArrowLeft } from "react-icons/hi";
+import { ButtonNav, ButtonRoutes } from "@/components";
+import { SCButtonNavContainer, SCNav } from "@/styled-components";
 import React from "react";
-import { SCNav } from "@/styled-components";
+import { HiArrowLeft } from "react-icons/hi";
 
 export interface INav {}
 
@@ -11,11 +11,15 @@ const rickIcon =
 const Nav: React.FC<INav> = () => {
   return (
     <SCNav>
-      <ButtonRoutes path="/RickAndMortyAPI">
-        <HiArrowLeft />
-      </ButtonRoutes>
       <img className="rick-icon" src={rickIcon} alt="Rick" />
-      <p className="nav-title">CHARACTERS</p>
+      <SCButtonNavContainer>
+        <ButtonNav path="/main">
+          <span>Main</span>
+        </ButtonNav>
+        <ButtonNav path="/create">
+          <span>Create</span>
+        </ButtonNav>
+      </SCButtonNavContainer>
     </SCNav>
   );
 };

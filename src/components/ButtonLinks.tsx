@@ -1,5 +1,4 @@
 import { SCButton } from "@/styled-components";
-import { ReactJSXElement } from "@emotion/react/types/jsx-namespace";
 import React from "react";
 
 export interface IButtonLinks {

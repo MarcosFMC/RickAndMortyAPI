@@ -9,6 +9,7 @@ const Character = lazy(() => import("./Character"));
 export interface ICharacterList {}
 
 const CharacterList: React.FC<ICharacterList> = () => {
+
   const characters = useSelector((state: AppStore) => state.characters.results);
 
   const { loading } = useContext(CharacterListContext);

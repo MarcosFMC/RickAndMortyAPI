@@ -1,12 +1,13 @@
+import { BackgroundParticles } from "@/components";
 import React from "react";
-import { BackgroundVideo, UIHome } from "./components";
+import { UIHome } from "./components";
 
 export interface HomeInterface {}
 
 const Home: React.FC<HomeInterface> = () => {
   return (
     <div>
-      <BackgroundVideo />
+      <BackgroundParticles />
       <UIHome />
     </div>
   );

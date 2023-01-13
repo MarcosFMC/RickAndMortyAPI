@@ -1,4 +1,4 @@
-import { ButtonRoutes, ButtonLinks } from "@/components";
+import { ButtonLinks, ButtonRoutes } from "@/components";
 import React from "react";
 import { HiArrowRight } from "react-icons/hi";
 import { SCUIButtons } from "../styled-components";

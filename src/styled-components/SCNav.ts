@@ -15,9 +15,14 @@ export const SCNav = styled.nav`
     padding: 0px 2rem;
   }
 
+  p {
+    margin: 0;
+  }
+
   .rick-icon {
     height: auto;
     width: 2rem;
+    margin: 1rem;
   }
 
   @media screen and (max-width: 1200px) {

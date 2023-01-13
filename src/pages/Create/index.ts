@@ -1,5 +1,4 @@
-export { default as Main } from "./Main";
-export * from "./adapters";
+export { default as Create } from "./Create";
 export * from "./components";
 export * from "./service";
 export * from "./styled-components";

@@ -9,6 +9,6 @@ export const SCBackgroundVideo = styled.video`
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: -1;
+  z-index: -2;
   filter: brightness(0.3);
 `;

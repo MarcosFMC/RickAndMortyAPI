@@ -1,11 +1,11 @@
 import React from "react";
 import { SCHomeTitle } from "@/styled-components";
 
-export interface IHomeTitle {
+export interface ITitleWithAnim {
   children: string;
 }
 
-const TitleWithAnimation: React.FC<IHomeTitle> = ({ children }) => {
+const TitleWithAnimation: React.FC<ITitleWithAnim> = ({ children }) => {
   return <SCHomeTitle>{children}</SCHomeTitle>;
 };
 
