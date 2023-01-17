@@ -1,11 +1,15 @@
 export interface FilterForm {
-  created: string;
+  name: string;
   status: string;
+  species: string;
+  type: string;
   gender: string;
 }
 
 export const filterFormInitialState: FilterForm = {
-  created: "",
+  name: "",
   status: "",
+  species: "",
+  type: "",
   gender: "",
 };

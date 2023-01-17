@@ -1,14 +1,9 @@
-import { FilterCharacterContext } from "@/contexts";
+import { PaginationContext } from "@/contexts";
+import { filterFormInitialState } from "@/models";
 import { getCharacters } from "@/redux";
-import React, { useEffect, useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
-import { apiDataAdapter } from "../adapters";
-import {
-  apiCharactersURL,
-  getApiCharacters,
-  GetFetch,
-  rickAndMortyCharactersURL,
-} from "../service";
+import { GetCharacterByFilter } from "../service";
 
 import { SCFilterCharacterForm } from "../styled-components";
 export interface FilterCharacterFormInterface {}
@@ -16,56 +11,63 @@ export interface FilterCharacterFormInterface {}
 const FilterCharacterForm: React.FC<FilterCharacterFormInterface> = () => {
   const dispatch = useDispatch();
 
-  const { filterForm, setFilterForm } = useContext(FilterCharacterContext);
-
-  const setRickAndMortyCharacters = async () => {
-    const data = await GetFetch(rickAndMortyCharactersURL);
-    dispatch(getCharacters(data));
-  };
-  const setAPICharacters = async () => {
-    const data = await getApiCharacters(apiCharactersURL);
-    const adaptData = apiDataAdapter(data);
-    dispatch(getCharacters(adaptData));
-  };
+  const [filterForm, setFilterForm] = useState(filterFormInitialState);
+  const { setPaginationCount } = useContext(PaginationContext);
 
   const handleChange = async (e: any) => {
     setFilterForm({ ...filterForm, [e.target.name]: e.target.value });
   };
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    const data = await GetCharacterByFilter(filterForm);
+    dispatch(getCharacters(data));
+    setPaginationCount(1);
+  };
 
-  useEffect(() => {
-    if (filterForm.created == "bd") {
-      setAPICharacters();
-    }
-    if (filterForm.created == "") {
-      setRickAndMortyCharacters();
-    }
-    if (filterForm.created == "api") {
-      setRickAndMortyCharacters();
-    }
-  }, [filterForm]);
+  const handleRefresh = async (e: any) => {
+    setFilterForm(filterFormInitialState);
+  };
 
   return (
-    <SCFilterCharacterForm>
-      <h2>Ordenar</h2>
-      <span>Created : </span>
-      <select name="created" onChange={(e) => handleChange(e)}>
-        <option value="">-</option>
-        <option value="api">API</option>
-        <option value="bd">Base de datos</option>
-      </select>
-      <h2>Filtros</h2>
+    <SCFilterCharacterForm onSubmit={handleSubmit}>
+      <h2>FILTERS</h2>
+      <span>Name : </span>
+      <input
+        type="text"
+        placeholder="Search characters..."
+        onChange={handleChange}
+        name="name"
+        value={filterForm.name}
+      />
       <span>Status : </span>
-      <select name="status" onChange={(e) => handleChange(e)}>
+      <select name="status" onChange={handleChange} value={filterForm.status}>
         <option value="">-</option>
         <option value="alive">Alive</option>
         <option value="dead">Dead</option>
+        <option value="unknown">Unknown</option>
       </select>
+      <span>Species: </span>
+      <input
+        type="text"
+        onChange={handleChange}
+        name="species"
+        value={filterForm.species}
+      />
+      <span>Type: </span>
+      <input
+        type="text"
+        onChange={handleChange}
+        name="type"
+        value={filterForm.type}
+      />
       <span>Gender: </span>
-      <select name="gender" onChange={(e) => handleChange(e)}>
+      <select name="gender" onChange={handleChange} value={filterForm.gender}>
         <option value="">-</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
       </select>
+      <input type="submit" value="Filtrar" />
+      <input type="button" value="Refresh" onClick={handleRefresh} />
     </SCFilterCharacterForm>
   );
 };

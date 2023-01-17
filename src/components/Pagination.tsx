@@ -1,8 +1,4 @@
-import {
-  CharacterListContext,
-  FilterCharacterContext,
-  PaginationContext,
-} from "@/contexts";
+import { CharacterListContext, PaginationContext } from "@/contexts";
 import { AppStore } from "@/models";
 import { GetFetch } from "@/pages";
 import { getCharacters } from "@/redux";
@@ -18,7 +14,6 @@ const Pagination: React.FC<PaginationInterface> = () => {
 
   const { setPaginationCount, currentPage } = useContext(PaginationContext);
 
-  const { filterForm } = useContext(FilterCharacterContext);
   const { setLoading } = useContext(CharacterListContext);
 
   const paginationInfo = useSelector(
@@ -31,46 +26,40 @@ const Pagination: React.FC<PaginationInterface> = () => {
   };
 
   const handleNext = async () => {
-    if (paginationInfo !== undefined) {
-      setLoading(true);
-      const data = await GetFetch(paginationInfo.next);
-      getNumbersFromURL(paginationInfo.next);
-      dispatch(getCharacters(data));
-      setLoading(false);
-    }
+    setLoading(true);
+    const nextData = await GetFetch(paginationInfo.next);
+    getNumbersFromURL(paginationInfo.next);
+    dispatch(getCharacters(nextData));
+    setLoading(false);
   };
 
   const handlePrevious = async () => {
-    if (paginationInfo !== undefined) {
-      setLoading(true);
-      const data = await GetFetch(paginationInfo.prev);
-      getNumbersFromURL(paginationInfo.prev);
-      dispatch(getCharacters(data));
-      setLoading(false);
-    }
+    setLoading(true);
+    const prevData = await GetFetch(paginationInfo.prev);
+    getNumbersFromURL(paginationInfo.prev);
+    dispatch(getCharacters(prevData));
+    setLoading(false);
   };
 
   return (
     <SCPagination>
-      {filterForm.created != "bd" ? (
+      {paginationInfo !== undefined ? (
         <>
-          {paginationInfo !== undefined ? (
-            <>
-              <ButtonPagination type={false} onClick={handlePrevious} />
-
-              <span className="pages-text">
-                <b>{currentPage}</b> de {paginationInfo.pages}
-              </span>
-
-              <ButtonPagination type={true} onClick={handleNext} />
-            </>
-          ) : undefined}
-          <span className="characters-found-text">
-            Personajes encontrados :
-            {paginationInfo !== undefined ? paginationInfo.count : null}
+          {paginationInfo.prev ? (
+            <ButtonPagination type={false} onClick={handlePrevious} />
+          ) : null}
+          {paginationInfo.next ? (
+            <ButtonPagination type={true} onClick={handleNext} />
+          ) : null}
+          <span className="pages-text">
+            <b>{currentPage}</b> de {paginationInfo.pages}
           </span>
         </>
       ) : undefined}
+      <span className="characters-found-text">
+        Personajes encontrados :
+        {paginationInfo !== undefined ? paginationInfo.count : null}
+      </span>
     </SCPagination>
   );
 };

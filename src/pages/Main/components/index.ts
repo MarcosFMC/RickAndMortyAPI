@@ -3,4 +3,3 @@ export { default as CharacterList } from "./CharacterList";
 export { default as FilterCharacterForm } from "./FilterCharacterForm";
 export { default as MainBackground } from "./MainBackground";
 export { default as ModalCharacterDescription } from "./ModalCharacterDescription";
-export { default as SearchCharacter } from "./SearchCharacter";

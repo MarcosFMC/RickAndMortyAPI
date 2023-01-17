@@ -104,7 +104,7 @@ const FormCreateCharacter: React.FC<ICreateForm> = () => {
         >
           <option value="">---</option>
           <option value="Alive">Alive</option>
-          <option value="No alive">No alive</option>
+          <option value="Dead">Dead</option>
         </select>
 
         {errors.status && (

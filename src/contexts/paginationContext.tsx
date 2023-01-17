@@ -15,7 +15,7 @@ export const PaginationContext =
 export const PaginationInitialStatePage = "1";
 
 interface IPaginationProvider {
-  children?: ReactJSXElement;
+  children?: ReactJSXElement | ReactJSXElement[];
 }
 export const PaginationProvider: React.FC<IPaginationProvider> = ({
   children,

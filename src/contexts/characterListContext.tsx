@@ -16,7 +16,7 @@ export const CharacterListContext =
 export const CharacterListInitialState = "1";
 
 interface ICharacterListProvider {
-  children?: ReactJSXElement;
+  children?: ReactJSXElement | ReactJSXElement[];
 }
 export const CharacterListProvider: React.FC<ICharacterListProvider> = ({
   children,
