@@ -1,9 +1,9 @@
-import { APIData, APIInfoInitialState } from "@/models";
+import { RickAndMortyData, rickAndMortyInfoInitialState } from "@/models";
 
-export const apiDataAdapter = (characters: any): APIData => {
-  const InitialState: APIData = {
+export const apiDataAdapter = (characters: any): RickAndMortyData => {
+  const InitialState: RickAndMortyData = {
     results: characters,
-    info: APIInfoInitialState,
+    info: rickAndMortyInfoInitialState,
   };
   return InitialState;
 };

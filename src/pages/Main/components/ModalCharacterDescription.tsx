@@ -1,10 +1,10 @@
-import { APICharacter } from "@/models";
+import { Character } from "@/models";
 import { ModalHighlightText } from "@/styled-components";
 import { IoIosClose } from "react-icons/io";
 import React from "react";
 import { SCModalCharacterDescription } from "../styled-components";
 
-const ModalCharacterDescription: React.FC<APICharacter> = (character) => {
+const ModalCharacterDescription: React.FC<Character> = (character) => {
   return (
     <SCModalCharacterDescription>
       <div className="title-and-icon">

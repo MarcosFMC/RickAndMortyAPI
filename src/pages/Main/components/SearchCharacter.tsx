@@ -1,6 +1,6 @@
 import { PaginationContext, PaginationInitialStatePage } from "@/contexts";
 import { GetCharacterByFilter } from "@/pages";
-import { getCharacters } from "@/redux";
+import { getDbCharacters } from "@/redux";
 import React, { useContext } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useDispatch } from "react-redux";
@@ -16,7 +16,7 @@ const SearchCharacter: React.FC<ISearchCharacter> = () => {
   const filterRickAndMortyCharacters = async (e: any) => {
     const filterData = await GetCharacterByFilter(e.target.value);
     setPaginationCount(PaginationInitialStatePage);
-    dispatch(getCharacters(filterData));
+    dispatch(getDbCharacters(filterData));
   };
 
   const handleChange = async (e: any) => {

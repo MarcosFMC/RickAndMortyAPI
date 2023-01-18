@@ -1,1 +1,2 @@
-export * from "./characters.slice";
+export * from "./dbCharacters";
+export * from "./rickAndMortyCharacters";

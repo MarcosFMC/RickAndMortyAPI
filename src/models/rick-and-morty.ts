@@ -9,7 +9,7 @@ export const URLDataInitialState: URLData = {
   url: "",
 };
 
-export interface APICharacter {
+export interface Character {
   id?: number;
   name: string;
   status: string;
@@ -25,7 +25,7 @@ export interface APICharacter {
   loading?: any;
 }
 
-export const APICharacterInitialState: APICharacter = {
+export const CharacterInitialState: Character = {
   id: 0,
   name: "",
   status: "",
@@ -42,13 +42,13 @@ export const APICharacterInitialState: APICharacter = {
 };
 
 //API PAGINATIONINFO
-export interface APIInfo {
+export interface RickAndMortyInfo {
   count: number;
   pages: number;
   next: string;
   prev: string;
 }
-export const APIInfoInitialState: APIInfo = {
+export const rickAndMortyInfoInitialState: RickAndMortyInfo = {
   count: 0,
   pages: 0,
   next: "",
@@ -56,12 +56,12 @@ export const APIInfoInitialState: APIInfo = {
 };
 
 //API ALL DATA
-export interface APIData {
-  results: APICharacter[];
-  info: APIInfo;
+export interface RickAndMortyData {
+  results: Character[];
+  info: RickAndMortyInfo;
 }
 
-export const APIDataInitialState: APIData = {
+export const rickAndMortyDataInitialState: RickAndMortyData = {
   results: [],
-  info: APIInfoInitialState,
+  info: rickAndMortyInfoInitialState,
 };

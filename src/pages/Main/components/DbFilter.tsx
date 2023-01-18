@@ -1,27 +1,31 @@
-import { PaginationContext } from "@/contexts";
 import { filterFormInitialState } from "@/models";
-import { getCharacters } from "@/redux";
-import React, { useContext, useState } from "react";
+import { getDbCharacters } from "@/redux";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { GetCharacterByFilter } from "../service";
+import { bdCharactersUrl, getAllDbCharacters } from "../service";
 
-import { SCFilterCharacterForm } from "../styled-components";
-export interface FilterCharacterFormInterface {}
+import { SCFilterRickAndMorty } from "../styled-components";
+export interface IDbFilter {}
 
-const FilterCharacterForm: React.FC<FilterCharacterFormInterface> = () => {
+const DbFilter: React.FC<IDbFilter> = () => {
   const dispatch = useDispatch();
 
+  const setCharacters = async () => {
+    const data = await getAllDbCharacters(bdCharactersUrl);
+    dispatch(getDbCharacters(data));
+  };
+
+  useEffect(() => {
+    setCharacters();
+  }, []);
+
   const [filterForm, setFilterForm] = useState(filterFormInitialState);
-  const { setPaginationCount } = useContext(PaginationContext);
 
   const handleChange = async (e: any) => {
     setFilterForm({ ...filterForm, [e.target.name]: e.target.value });
   };
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const data = await GetCharacterByFilter(filterForm);
-    dispatch(getCharacters(data));
-    setPaginationCount(1);
   };
 
   const handleRefresh = async (e: any) => {
@@ -29,8 +33,8 @@ const FilterCharacterForm: React.FC<FilterCharacterFormInterface> = () => {
   };
 
   return (
-    <SCFilterCharacterForm onSubmit={handleSubmit}>
-      <h2>FILTERS</h2>
+    <SCFilterRickAndMorty onSubmit={handleSubmit}>
+      <h2>Rick and Morty Filter</h2>
       <span>Name : </span>
       <input
         type="text"
@@ -51,6 +55,7 @@ const FilterCharacterForm: React.FC<FilterCharacterFormInterface> = () => {
         type="text"
         onChange={handleChange}
         name="species"
+        placeholder="Search species..."
         value={filterForm.species}
       />
       <span>Type: </span>
@@ -58,6 +63,7 @@ const FilterCharacterForm: React.FC<FilterCharacterFormInterface> = () => {
         type="text"
         onChange={handleChange}
         name="type"
+        placeholder="Search type..."
         value={filterForm.type}
       />
       <span>Gender: </span>
@@ -66,10 +72,12 @@ const FilterCharacterForm: React.FC<FilterCharacterFormInterface> = () => {
         <option value="male">Male</option>
         <option value="female">Female</option>
       </select>
-      <input type="submit" value="Filtrar" />
-      <input type="button" value="Refresh" onClick={handleRefresh} />
-    </SCFilterCharacterForm>
+      <div className="buttons-container">
+        <input type="submit" value="Filter" />
+        <input type="button" value="Refresh" onClick={handleRefresh} />
+      </div>
+    </SCFilterRickAndMorty>
   );
 };
 
-export default FilterCharacterForm;
+export default DbFilter;

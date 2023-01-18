@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const SCLoadingCharacter = styled.div`
   width: 1fr;
-  height: 290px;
+  height: 250px;
   display: flex;
   justify-content: center;
   align-items: center;

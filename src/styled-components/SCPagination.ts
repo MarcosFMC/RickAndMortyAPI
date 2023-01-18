@@ -1,14 +1,17 @@
 import styled from "styled-components";
 
 export const SCPagination = styled.div`
-  margin: 1rem;
+  grid-area: footer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   .characters-found-text {
-    display: block;
+    margin: 1rem;
     text-align: center;
-    margin-top: 1rem;
   }
   .pages-text {
+    display: block;
     margin: 1rem;
   }
 

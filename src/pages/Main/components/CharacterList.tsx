@@ -1,18 +1,16 @@
 import { ErrorCharacterNotFound, LoadingCharacter } from "@/components";
-import { CharacterListContext } from "@/contexts";
 import { AppStore } from "@/models";
-import React, { lazy, Suspense, useContext } from "react";
+import React, { lazy, Suspense } from "react";
 import { useSelector } from "react-redux";
 import { SCCharacterList } from "../styled-components";
-const Character = lazy(() => import("./Character"));
+const Character = lazy(() => import("./CharacterCard"));
 
 export interface ICharacterList {}
 
 const CharacterList: React.FC<ICharacterList> = () => {
-
-  const characters = useSelector((state: AppStore) => state.characters.results);
-
-  const { loading } = useContext(CharacterListContext);
+  const characters = useSelector(
+    (state: AppStore) => state.rickAndMortyCharacters.results
+  );
 
   return (
     <SCCharacterList>
@@ -21,7 +19,7 @@ const CharacterList: React.FC<ICharacterList> = () => {
       ) : (
         characters.map((character) => (
           <Suspense fallback={<LoadingCharacter />}>
-            <Character loading={loading} {...character} />
+            <Character {...character} />
           </Suspense>
         ))
       )}

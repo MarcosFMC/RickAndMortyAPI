@@ -1,9 +1,10 @@
 import { AppStore } from "@/models";
 import { configureStore } from "@reduxjs/toolkit";
-import { charactersSlice } from "./slices";
+import { dbCharactersSlice, rickAndMortyCharactersSlice } from "./slices";
 
 export default configureStore<AppStore>({
   reducer: {
-    characters: charactersSlice.reducer,
+    rickAndMortyCharacters: rickAndMortyCharactersSlice.reducer,
+    dbCharacters: dbCharactersSlice.reducer,
   },
 });

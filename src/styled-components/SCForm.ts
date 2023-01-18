@@ -29,13 +29,27 @@ export const SCForm = styled.form`
   select {
     padding: 0.5rem;
     margin: 0.5rem;
-    background: rgb(239, 239, 239, 50%);
+    background: rgb(239, 239, 239, 10%);
+    border: none;
     &:focus {
       outline: 1px solid #5ba4fb;
     }
   }
 
   input[type="submit"] {
+    display: block;
+    color: white;
+    border-radius: 3px;
+    padding: 0.5rem 1.5rem;
+    background: rgb(239, 239, 239, 50%);
+    transition: all 0.1s;
+
+    &:hover {
+      background-color: #f6e95d50;
+    }
+  }
+
+  input[type="button"] {
     display: block;
     color: white;
     border-radius: 3px;

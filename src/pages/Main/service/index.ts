@@ -1,2 +1,2 @@
-export * from './api';
-export * from './rick-and-morty';
+export * from "./bdService";
+export * from "./rickAndMortyService";

@@ -9,5 +9,4 @@ export { default as LoadingCharacter } from "./LoadingCharacter";
 export { default as LoadingWindow } from "./LoadingWindow";
 export { default as Modal } from "./Modal";
 export { default as Nav } from "./Nav";
-export { default as Pagination } from "./Pagination";
 export { default as TitleWithAnimation } from "./TitleWithAnimation";

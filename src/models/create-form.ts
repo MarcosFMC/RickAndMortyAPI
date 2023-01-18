@@ -1,5 +1,5 @@
 import { CreateForm } from "@/pages";
-import { APICharacter, URLData } from "./rick-and-morty";
+import { Character, URLData } from "./rick-and-morty";
 
 export interface CreateForm {
   name: string;
@@ -23,7 +23,7 @@ export const createFormInitialState: CreateForm = {
   image: "",
 };
 
-export const apiCharacterAdapter = (apiCharacter: CreateForm): APICharacter => {
+export const apiCharacterAdapter = (apiCharacter: CreateForm): Character => {
   const urlDataOrigin: URLData = {
     name: apiCharacter.origin,
     url: "",
@@ -33,7 +33,7 @@ export const apiCharacterAdapter = (apiCharacter: CreateForm): APICharacter => {
     url: "",
   };
 
-  const APICharacterAdapter: APICharacter = {
+  const APICharacterAdapter: Character = {
     name: apiCharacter.name,
     status: apiCharacter.status,
     species: apiCharacter.species,
