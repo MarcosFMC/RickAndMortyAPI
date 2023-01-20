@@ -63,6 +63,7 @@ export const SCForm = styled.form`
     padding: 0.5rem 1.5rem;
     background: rgb(239, 239, 239, 50%);
     transition: all 0.1s;
+    cursor: pointer;
 
     &:hover {
       background-color: #f6e95d50;
