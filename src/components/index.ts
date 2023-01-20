@@ -1,3 +1,4 @@
+export { default as BackgroundFormParticles } from "./BackgroundFormParticles";
 export { default as BackgroundParticles } from "./BackgroundParticles";
 export { default as ButtonLinks } from "./ButtonLinks";
 export { default as ButtonNav } from "./ButtonNav";

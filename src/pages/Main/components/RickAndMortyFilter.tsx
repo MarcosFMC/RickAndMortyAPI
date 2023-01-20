@@ -10,6 +10,7 @@ import {
 } from "../service";
 
 import { SCFilterRickAndMorty } from "../styled-components";
+import DataModeSwitcher from "./DataModeSwitcher";
 export interface IRickAndMortyFilter {}
 
 const RickAndMortyFilter: React.FC<IRickAndMortyFilter> = () => {
@@ -84,6 +85,7 @@ const RickAndMortyFilter: React.FC<IRickAndMortyFilter> = () => {
         <input type="submit" value="Filter" />
         <input type="button" value="Refresh" onClick={handleRefresh} />
       </div>
+      <DataModeSwitcher />
     </SCFilterRickAndMorty>
   );
 };

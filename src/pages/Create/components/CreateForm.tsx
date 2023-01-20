@@ -1,3 +1,4 @@
+import { BackgroundFormParticles } from "@/components";
 import { useForm } from "@/hooks";
 import {
   apiCharacterAdapter,
@@ -78,7 +79,7 @@ const FormCreateCharacter: React.FC<ICreateForm> = () => {
 
   return (
     <SCCreateForm onSubmit={onSubmit}>
-      <SCForm>
+      <SCForm style={{ backgroundColor: "#212139" }}>
         <h2>Create character</h2>
         <label>{"Name"}</label>
         <input
@@ -192,7 +193,6 @@ const FormCreateCharacter: React.FC<ICreateForm> = () => {
           value={form.image}
           required
         />
-
         {errors.image && <SCErrorValidation>{errors.image}</SCErrorValidation>}
         <input type="submit" value="Create character" />
       </SCForm>

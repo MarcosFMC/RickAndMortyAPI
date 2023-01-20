@@ -8,16 +8,16 @@ const Character = lazy(() => import("./CharacterCard"));
 export interface ICharacterList {}
 
 const CharacterList: React.FC<ICharacterList> = () => {
-  const characters = useSelector(
+  const rickAndMortyCharacters = useSelector(
     (state: AppStore) => state.rickAndMortyCharacters.results
   );
 
   return (
     <SCCharacterList>
-      {characters === undefined ? (
+      {rickAndMortyCharacters === undefined ? (
         <ErrorCharacterNotFound />
       ) : (
-        characters.map((character) => (
+        rickAndMortyCharacters.map((character) => (
           <Suspense fallback={<LoadingCharacter />}>
             <Character {...character} />
           </Suspense>

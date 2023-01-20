@@ -1,4 +1,5 @@
 export { default as ModalHighlightText } from "./ModalHighlightText";
+export * from "./SCBackgroundFormParticles";
 export * from "./SCButton";
 export * from "./SCButtonNav";
 export * from "./SCButtonNavContainer";

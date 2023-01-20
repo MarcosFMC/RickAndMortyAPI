@@ -3,11 +3,8 @@ import styled from "styled-components";
 
 export const SCFilterRickAndMorty = styled(SCForm)`
   grid-area: filter;
-  background-color: green;
   border-radius: 3px;
-  background-color: #161625;
   text-align: center;
-  height: 500px;
   input,
   select {
     display: block;

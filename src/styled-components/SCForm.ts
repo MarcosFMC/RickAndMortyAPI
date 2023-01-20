@@ -1,7 +1,12 @@
 import styled from "styled-components";
 
 export const SCForm = styled.form`
-  background: #161625;
+  border-radius: 3px;
+
+  h2 {
+    padding: 0.5rem;
+    background: #272743;
+  }
   label {
     display: block;
     margin-left: 0.5rem;
@@ -10,8 +15,9 @@ export const SCForm = styled.form`
     color: white;
     padding: 0.5rem;
     margin: 0.5rem;
-    background: rgb(239, 239, 239, 10%);
+    background: #1a1a2d;
     border: none;
+    border-radius: 3px;
 
     &::placeholder {
       color: rgb(239, 239, 239, 90%);
@@ -29,8 +35,9 @@ export const SCForm = styled.form`
   select {
     padding: 0.5rem;
     margin: 0.5rem;
-    background: rgb(239, 239, 239, 10%);
+    background: #1a1a2d;
     border: none;
+    color: white;
     &:focus {
       outline: 1px solid #5ba4fb;
     }

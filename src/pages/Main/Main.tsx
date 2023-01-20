@@ -1,9 +1,14 @@
-import { Nav } from "@/components";
-import { CharacterListProvider, PaginationProvider } from "@/contexts";
+import { BackgroundFormParticles, Nav } from "@/components";
+import {
+  CharacterListProvider,
+  DataModeProvider,
+  PaginationProvider,
+} from "@/contexts";
 import RickAndMortyPagination from "@/pages/Main/components/RickAndMortyPagination";
 import React from "react";
 import {
   CharacterList,
+  DataModeSwitcher,
   MainBackground,
   RickAndMortyFilter,
 } from "./components";
@@ -16,14 +21,17 @@ const Main: React.FC<MainInterface> = () => {
     <>
       <Nav />
       <SCMain>
-        <PaginationProvider>
-          <CharacterListProvider>
-            <MainBackground />
-            <RickAndMortyFilter />
-            <CharacterList />
-            <RickAndMortyPagination />
-          </CharacterListProvider>
-        </PaginationProvider>
+        <DataModeProvider>
+          <PaginationProvider>
+            <CharacterListProvider>
+              <BackgroundFormParticles />
+              <MainBackground />
+              <RickAndMortyFilter />
+              <CharacterList />
+              <RickAndMortyPagination />
+            </CharacterListProvider>
+          </PaginationProvider>
+        </DataModeProvider>
       </SCMain>
     </>
   );

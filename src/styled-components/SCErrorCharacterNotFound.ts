@@ -5,5 +5,6 @@ export const SCErrorCharacterNotFound = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 80vw;
+  height: 750px;
+  width: 1000px;
 `;

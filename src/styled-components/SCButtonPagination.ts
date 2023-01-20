@@ -9,6 +9,7 @@ export const SCButtonPagination = styled.button`
   transition: 0.1s all;
   cursor: pointer;
   font-family: "Kanit";
+  overflow: hidden;
 
   &:hover {
     background: rgb(0, 0, 0, 50%);
