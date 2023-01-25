@@ -1,14 +1,19 @@
 import { SCButtonPagination } from "@/styled-components";
 import React from "react";
 export interface IButtonPagination {
-  onClick: any;
-  type: boolean;
+  onClick: React.MouseEventHandler<HTMLButtonElement> | undefined;
+  text: string;
+  disabled?: boolean | undefined;
 }
 
-const ButtonPagination: React.FC<IButtonPagination> = ({ onClick, type }) => {
+const ButtonPagination: React.FC<IButtonPagination> = ({
+  onClick,
+  text,
+  disabled,
+}) => {
   return (
-    <SCButtonPagination onClick={onClick}>
-      {type ? "NEXT" : "PREV"}
+    <SCButtonPagination onClick={onClick} disabled={disabled}>
+      {text}
     </SCButtonPagination>
   );
 };

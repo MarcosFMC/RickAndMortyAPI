@@ -1,50 +1,73 @@
+import { DbPaginationContext } from "@/contexts";
 import { filterFormInitialState } from "@/models";
-import { getDbCharacters } from "@/redux";
-import React, { useEffect, useState } from "react";
+import {
+  getDbCharacters,
+  getDbCharactersByGender,
+  getDbCharactersByName,
+  getDbCharactersBySpecies,
+  getDbCharactersByStatus,
+  getDbCharactersByType,
+} from "@/redux";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { bdCharactersUrl, getAllDbCharacters } from "../service";
 
 import { SCFilterRickAndMorty } from "../styled-components";
+import DataModeSwitcher from "./DataModeSwitcher";
 export interface IDbFilter {}
 
 const DbFilter: React.FC<IDbFilter> = () => {
   const dispatch = useDispatch();
 
+  const { setPage, setInput } = useContext(DbPaginationContext);
+
   const setCharacters = async () => {
     const data = await getAllDbCharacters(bdCharactersUrl);
     dispatch(getDbCharacters(data));
   };
-
+  const [dbFilterForm, setDbFilterForm] = useState(filterFormInitialState);
   useEffect(() => {
     setCharacters();
   }, []);
 
-  const [filterForm, setFilterForm] = useState(filterFormInitialState);
-
+  const resetDbPagination = () => {
+    setPage(1);
+    setInput(1);
+  };
+  //Corregir tipado
   const handleChange = async (e: any) => {
-    setFilterForm({ ...filterForm, [e.target.name]: e.target.value });
+    setDbFilterForm({ ...dbFilterForm, [e.target.name]: e.target.value });
   };
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    await setCharacters();
+    dispatch(getDbCharactersByName(dbFilterForm.name));
+    dispatch(getDbCharactersByStatus(dbFilterForm.status));
+    dispatch(getDbCharactersBySpecies(dbFilterForm.species));
+    dispatch(getDbCharactersByType(dbFilterForm.type));
+    dispatch(getDbCharactersByGender(dbFilterForm.gender));
+    resetDbPagination();
   };
 
   const handleRefresh = async (e: any) => {
-    setFilterForm(filterFormInitialState);
+    setDbFilterForm(filterFormInitialState);
+    setCharacters();
+    resetDbPagination();
   };
 
   return (
     <SCFilterRickAndMorty onSubmit={handleSubmit}>
-      <h2>Rick and Morty Filter</h2>
+      <h2>DB Filter</h2>
       <span>Name : </span>
       <input
         type="text"
         placeholder="Search characters..."
         onChange={handleChange}
         name="name"
-        value={filterForm.name}
+        value={dbFilterForm.name}
       />
       <span>Status : </span>
-      <select name="status" onChange={handleChange} value={filterForm.status}>
+      <select name="status" onChange={handleChange} value={dbFilterForm.status}>
         <option value="">-</option>
         <option value="alive">Alive</option>
         <option value="dead">Dead</option>
@@ -56,7 +79,7 @@ const DbFilter: React.FC<IDbFilter> = () => {
         onChange={handleChange}
         name="species"
         placeholder="Search species..."
-        value={filterForm.species}
+        value={dbFilterForm.species}
       />
       <span>Type: </span>
       <input
@@ -64,10 +87,10 @@ const DbFilter: React.FC<IDbFilter> = () => {
         onChange={handleChange}
         name="type"
         placeholder="Search type..."
-        value={filterForm.type}
+        value={dbFilterForm.type}
       />
       <span>Gender: </span>
-      <select name="gender" onChange={handleChange} value={filterForm.gender}>
+      <select name="gender" onChange={handleChange} value={dbFilterForm.gender}>
         <option value="">-</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
@@ -76,6 +99,7 @@ const DbFilter: React.FC<IDbFilter> = () => {
         <input type="submit" value="Filter" />
         <input type="button" value="Refresh" onClick={handleRefresh} />
       </div>
+      <DataModeSwitcher />
     </SCFilterRickAndMorty>
   );
 };

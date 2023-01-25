@@ -1,37 +1,49 @@
 import { BackgroundFormParticles, Nav } from "@/components";
 import {
   CharacterListProvider,
-  DataModeProvider,
-  PaginationProvider,
+  DataModeContext,
+  DbPaginationProvider,
+  RickAndMortyPaginationProvider,
 } from "@/contexts";
-import RickAndMortyPagination from "@/pages/Main/components/RickAndMortyPagination";
-import React from "react";
+import React, { useContext } from "react";
 import {
   CharacterList,
-  DataModeSwitcher,
+  DbFilter,
+  DbPagination,
   MainBackground,
   RickAndMortyFilter,
+  RickAndMortyPagination,
 } from "./components";
 import { SCMain } from "./styled-components/SCMain";
 
 export interface MainInterface {}
 
 const Main: React.FC<MainInterface> = () => {
+  const { dataMode } = useContext(DataModeContext);
   return (
     <>
       <Nav />
       <SCMain>
-        <DataModeProvider>
-          <PaginationProvider>
+        <RickAndMortyPaginationProvider>
+          <DbPaginationProvider>
             <CharacterListProvider>
-              <BackgroundFormParticles />
               <MainBackground />
-              <RickAndMortyFilter />
+              <BackgroundFormParticles />
               <CharacterList />
-              <RickAndMortyPagination />
+              {dataMode === "rickandmorty" ? (
+                <>
+                  <RickAndMortyFilter />
+                  <RickAndMortyPagination />
+                </>
+              ) : (
+                <>
+                  <DbFilter />
+                  <DbPagination />
+                </>
+              )}
             </CharacterListProvider>
-          </PaginationProvider>
-        </DataModeProvider>
+          </DbPaginationProvider>
+        </RickAndMortyPaginationProvider>
       </SCMain>
     </>
   );

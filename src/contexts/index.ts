@@ -1,3 +1,4 @@
 export * from "./characterListContext";
 export * from "./dataModeContext";
-export * from "./paginationContext";
+export * from "./dbPaginationContext";
+export * from "./rickAndMortyPaginationContext";

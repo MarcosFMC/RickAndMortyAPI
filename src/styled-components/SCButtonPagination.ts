@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SCButtonPagination = styled.button`
-  width: 80px;
+  padding: 0rem 1rem;
   height: 30px;
   background: rgb(249, 249, 249, 5%);
   border: thin solid rgb(32, 45, 58);

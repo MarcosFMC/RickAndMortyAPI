@@ -1,6 +1,12 @@
-import { PaginationContext } from "@/contexts";
-import { filterFormInitialState } from "@/models";
-import { getDbCharacters, getRickAndMortyCharacters } from "@/redux";
+import {
+  rickAndMortyPaginationInitialStatePage,
+  RickAndMortyPaginationContext,
+} from "@/contexts";
+import {
+  filterFormInitialState,
+  filterFormInitialState as rickAndMortyFilterFormInitialState,
+} from "@/models";
+import { getRickAndMortyCharacters } from "@/redux";
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
@@ -24,21 +30,29 @@ const RickAndMortyFilter: React.FC<IRickAndMortyFilter> = () => {
     setCharacters();
   }, []);
 
-  const [filterForm, setFilterForm] = useState(filterFormInitialState);
-  const { setPaginationCount } = useContext(PaginationContext);
+  const [rickAndMortyFilterForm, setRickAndMortyFilterForm] = useState(
+    filterFormInitialState
+  );
+
+  const { setPaginationCount } = useContext(RickAndMortyPaginationContext);
 
   const handleChange = async (e: any) => {
-    setFilterForm({ ...filterForm, [e.target.name]: e.target.value });
+    setRickAndMortyFilterForm({
+      ...rickAndMortyFilterForm,
+      [e.target.name]: e.target.value,
+    });
   };
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const data = await GetCharacterByFilter(filterForm);
+    const data = await GetCharacterByFilter(rickAndMortyFilterForm);
     dispatch(getRickAndMortyCharacters(data));
-    setPaginationCount(1);
+    setPaginationCount(rickAndMortyPaginationInitialStatePage);
   };
 
   const handleRefresh = async (e: any) => {
-    setFilterForm(filterFormInitialState);
+    setRickAndMortyFilterForm(rickAndMortyFilterFormInitialState);
+    setCharacters();
+    setPaginationCount(rickAndMortyPaginationInitialStatePage);
   };
 
   return (
@@ -50,10 +64,14 @@ const RickAndMortyFilter: React.FC<IRickAndMortyFilter> = () => {
         placeholder="Search characters..."
         onChange={handleChange}
         name="name"
-        value={filterForm.name}
+        value={rickAndMortyFilterForm.name}
       />
       <span>Status : </span>
-      <select name="status" onChange={handleChange} value={filterForm.status}>
+      <select
+        name="status"
+        onChange={handleChange}
+        value={rickAndMortyFilterForm.status}
+      >
         <option value="">-</option>
         <option value="alive">Alive</option>
         <option value="dead">Dead</option>
@@ -65,7 +83,7 @@ const RickAndMortyFilter: React.FC<IRickAndMortyFilter> = () => {
         onChange={handleChange}
         name="species"
         placeholder="Search species..."
-        value={filterForm.species}
+        value={rickAndMortyFilterForm.species}
       />
       <span>Type: </span>
       <input
@@ -73,10 +91,14 @@ const RickAndMortyFilter: React.FC<IRickAndMortyFilter> = () => {
         onChange={handleChange}
         name="type"
         placeholder="Search type..."
-        value={filterForm.type}
+        value={rickAndMortyFilterForm.type}
       />
       <span>Gender: </span>
-      <select name="gender" onChange={handleChange} value={filterForm.gender}>
+      <select
+        name="gender"
+        onChange={handleChange}
+        value={rickAndMortyFilterForm.gender}
+      >
         <option value="">-</option>
         <option value="male">Male</option>
         <option value="female">Female</option>

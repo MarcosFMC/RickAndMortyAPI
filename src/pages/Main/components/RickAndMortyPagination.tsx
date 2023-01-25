@@ -1,18 +1,23 @@
-import { CharacterListContext, PaginationContext } from "@/contexts";
+import {
+  CharacterListContext,
+  RickAndMortyPaginationContext,
+} from "@/contexts";
 import { AppStore } from "@/models";
 import { GetFetch } from "@/pages";
-import { getDbCharacters, getRickAndMortyCharacters } from "@/redux";
+import { getRickAndMortyCharacters } from "@/redux";
 import { SCPagination } from "@/styled-components";
 import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ButtonPagination from "../../../components/ButtonPagination";
+import { ButtonPagination } from "@/components";
 
 export interface IRickAndMortyPagination {}
 
 const RickAndMortyPagination: React.FC<IRickAndMortyPagination> = () => {
   const dispatch = useDispatch();
 
-  const { setPaginationCount, currentPage } = useContext(PaginationContext);
+  const { setPaginationCount, currentPage } = useContext(
+    RickAndMortyPaginationContext
+  );
 
   const { setLoading } = useContext(CharacterListContext);
 
@@ -45,16 +50,19 @@ const RickAndMortyPagination: React.FC<IRickAndMortyPagination> = () => {
     <SCPagination>
       {paginationInfo !== undefined ? (
         <>
-          {paginationInfo.prev ? (
-            <ButtonPagination type={false} onClick={handlePrevious} />
-          ) : null}
-
+          <ButtonPagination
+            text="PREV"
+            disabled={!paginationInfo.prev}
+            onClick={handlePrevious}
+          />
           <span className="pages-text">
             <b>{currentPage}</b> de {paginationInfo.pages}
           </span>
-          {paginationInfo.next ? (
-            <ButtonPagination type={true} onClick={handleNext} />
-          ) : null}
+          <ButtonPagination
+            text="NEXT"
+            onClick={handleNext}
+            disabled={!paginationInfo.next}
+          />
         </>
       ) : undefined}
       <span className="characters-found-text">

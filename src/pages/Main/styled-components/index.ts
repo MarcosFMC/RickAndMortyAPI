@@ -1,6 +1,7 @@
 export * from "./SCCharacter";
 export * from "./SCCharacterList";
 export * from "./SCDataModeSwitcher";
+export * from "./SCDbPagination";
 export * from "./SCFilterRickAndMorty";
 export * from "./SCMain";
 export * from "./SCMainBackground";

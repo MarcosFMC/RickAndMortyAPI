@@ -1,4 +1,7 @@
-import { PaginationContext, PaginationInitialStatePage } from "@/contexts";
+import {
+  RickAndMortyPaginationContext,
+  rickAndMortyPaginationInitialStatePage,
+} from "@/contexts";
 import { GetCharacterByFilter } from "@/pages";
 import { getDbCharacters } from "@/redux";
 import React, { useContext } from "react";
@@ -11,11 +14,11 @@ export interface ISearchCharacter {}
 const SearchCharacter: React.FC<ISearchCharacter> = () => {
   const dispatch = useDispatch();
 
-  const { setPaginationCount } = useContext(PaginationContext);
+  const { setPaginationCount } = useContext(RickAndMortyPaginationContext);
 
   const filterRickAndMortyCharacters = async (e: any) => {
     const filterData = await GetCharacterByFilter(e.target.value);
-    setPaginationCount(PaginationInitialStatePage);
+    setPaginationCount(rickAndMortyPaginationInitialStatePage);
     dispatch(getDbCharacters(filterData));
   };
 

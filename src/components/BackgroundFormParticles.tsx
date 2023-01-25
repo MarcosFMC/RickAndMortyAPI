@@ -49,7 +49,7 @@ const BackgroundFormParticles: React.FC<IBackgroundFormParticles> = () => {
           delay: 0,
           fullScreen: {
             enable: false,
-            zIndex: -1,
+            zIndex: 0,
           },
           detectRetina: true,
           duration: 0,
@@ -58,8 +58,8 @@ const BackgroundFormParticles: React.FC<IBackgroundFormParticles> = () => {
             detectsOn: "window",
             events: {
               onClick: {
-                enable: true,
-                mode: "push",
+                enable: false,
+                mode: [],
               },
               onDiv: {
                 selectors: [],
@@ -69,10 +69,10 @@ const BackgroundFormParticles: React.FC<IBackgroundFormParticles> = () => {
               },
               onHover: {
                 enable: true,
-                mode: "repulse",
+                mode: "bubble",
                 parallax: {
                   enable: false,
-                  force: 60,
+                  force: 2,
                   smooth: 10,
                 },
               },
@@ -94,11 +94,11 @@ const BackgroundFormParticles: React.FC<IBackgroundFormParticles> = () => {
                 distance: 200,
               },
               bubble: {
-                distance: 400,
+                distance: 40,
                 duration: 2,
                 mix: false,
-                opacity: 0.8,
-                size: 40,
+                opacity: 8,
+                size: 15,
                 divs: {
                   distance: 200,
                   duration: 0.4,
@@ -114,7 +114,7 @@ const BackgroundFormParticles: React.FC<IBackgroundFormParticles> = () => {
                 radius: 60,
               },
               grab: {
-                distance: 400,
+                distance: 100,
                 links: {
                   blink: false,
                   consent: false,
@@ -222,7 +222,7 @@ const BackgroundFormParticles: React.FC<IBackgroundFormParticles> = () => {
               },
             },
             color: {
-              value: "#ffffff",
+              value: "#1a1a2d",
               animation: {
                 h: {
                   count: 0,
@@ -260,8 +260,8 @@ const BackgroundFormParticles: React.FC<IBackgroundFormParticles> = () => {
                 distance: 200,
                 enable: false,
                 rotate: {
-                  x: 600,
-                  y: 1200,
+                  x: 3000,
+                  y: 3000,
                 },
               },
               center: {
@@ -270,7 +270,10 @@ const BackgroundFormParticles: React.FC<IBackgroundFormParticles> = () => {
                 radius: 0,
               },
               decay: 0,
-              distance: {},
+              distance: {
+                horizontal: 10,
+                vertical: 10,
+              },
               direction: "none",
               drift: 0,
               enable: true,
@@ -301,7 +304,7 @@ const BackgroundFormParticles: React.FC<IBackgroundFormParticles> = () => {
               },
               random: false,
               size: false,
-              speed: 2,
+              speed: 0.5,
               spin: {
                 acceleration: 0,
                 enable: false,
@@ -316,31 +319,27 @@ const BackgroundFormParticles: React.FC<IBackgroundFormParticles> = () => {
             },
             number: {
               density: {
-                enable: true,
+                enable: false,
                 width: 1920,
                 height: 1080,
               },
               limit: 0,
-              value: 80,
+              value: 600,
             },
             opacity: {
               random: {
-                enable: false,
+                enable: true,
                 minimumValue: 0.1,
               },
-              value: {
-                min: 0.1,
-                max: 0.5,
-              },
+              value: 1,
               animation: {
                 count: 0,
-                enable: true,
-                speed: 1,
+                enable: false,
+                speed: 2,
                 decay: 0,
                 sync: false,
                 destroy: "none",
                 startValue: "random",
-                minimumValue: 0.1,
               },
             },
             reduceDuplicates: false,
@@ -356,96 +355,30 @@ const BackgroundFormParticles: React.FC<IBackgroundFormParticles> = () => {
               },
             },
             shape: {
-              options: {
-                character: {
-                  value: [
-                    "t",
-                    "s",
-                    "P",
-                    "a",
-                    "r",
-                    "t",
-                    "i",
-                    "c",
-                    "l",
-                    "e",
-                    "s",
-                  ],
-                  font: "Verdana",
-                  style: "",
-                  weight: "400",
-                  fill: true,
-                },
-                char: {
-                  value: [
-                    "t",
-                    "s",
-                    "P",
-                    "a",
-                    "r",
-                    "t",
-                    "i",
-                    "c",
-                    "l",
-                    "e",
-                    "s",
-                  ],
-                  font: "Verdana",
-                  style: "",
-                  weight: "400",
-                  fill: true,
-                },
-              },
-              type: "char",
+              options: {},
+              type: ["circle", "square", "triangle"],
             },
             size: {
               random: {
                 enable: false,
                 minimumValue: 1,
               },
-              value: 16,
+              value: {
+                min: 3,
+                max: 5,
+              },
               animation: {
                 count: 0,
                 enable: false,
-                speed: 10,
+                speed: 5,
                 decay: 0,
                 sync: false,
                 destroy: "none",
                 startValue: "random",
-                minimumValue: 10,
               },
             },
             stroke: {
-              width: 1,
-              color: {
-                value: "#ffffff",
-                animation: {
-                  h: {
-                    count: 0,
-                    enable: false,
-                    offset: 0,
-                    speed: 1,
-                    decay: 0,
-                    sync: true,
-                  },
-                  s: {
-                    count: 0,
-                    enable: false,
-                    offset: 0,
-                    speed: 1,
-                    decay: 0,
-                    sync: true,
-                  },
-                  l: {
-                    count: 0,
-                    enable: false,
-                    offset: 0,
-                    speed: 1,
-                    decay: 0,
-                    sync: true,
-                  },
-                },
-              },
+              width: 0,
             },
             zIndex: {
               random: {
@@ -587,13 +520,13 @@ const BackgroundFormParticles: React.FC<IBackgroundFormParticles> = () => {
             links: {
               blink: false,
               color: {
-                value: "#ffffff",
+                value: "#fff",
               },
               consent: false,
-              distance: 150,
-              enable: true,
+              distance: 100,
+              enable: false,
               frequency: 1,
-              opacity: 0.4,
+              opacity: 1,
               shadow: {
                 blur: 5,
                 color: {
@@ -624,10 +557,28 @@ const BackgroundFormParticles: React.FC<IBackgroundFormParticles> = () => {
           pauseOnBlur: true,
           pauseOnOutsideViewport: true,
           responsive: [],
-          smooth: false,
+          smooth: true,
           style: {},
           themes: [],
           zLayers: 100,
+          canvasMask: {
+            enable: true,
+            override: {
+              color: true,
+              opacity: false,
+            },
+            pixels: {
+              offset: 4,
+            },
+            position: {
+              x: 50,
+              y: 50,
+            },
+            scale: 5,
+            image: {
+              src: "https://particles.js.org/images/amongus_cyan.png",
+            },
+          },
         }}
       />
     </SCBackgroundFormParticles>
